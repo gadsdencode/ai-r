@@ -1,0 +1,34 @@
+/* Part 1: Modularizing the Code */
+@keyframes pulseRing {
+    0% {
+        transform: scale(0.33);
+    }
+    40%, 100% {
+        opacity: 0;
+    }
+}
+
+.pulse-ring-container:before {
+    content: "";
+    position: absolute;
+    width: var(--ring-size, 300%);
+    height: var(--ring-size, 300%);
+    margin-left: -100%;
+    margin-top: -100%;
+    border-radius: 50%;
+    background-color: var(--ring-color, teal);
+    opacity: 0;
+    animation: pulseRing var(--animation-duration, 2.2s) cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* Part 2: Responsiveness */
+@media (max-width: 768px) {
+    .pulse-ring-container:before {
+        width: var(--mobile-ring-size, 200%);
+        height: var(--mobile-ring-size, 200%);
+    }
+}
+
+/* Usage Example:
+   <div class="pulse-ring-container" style="--ring-color: red; --ring-size: 250%; --animation-duration: 2s;"></div>
+*/
